@@ -1,0 +1,18 @@
+sudo apt update
+sudo apt install nginx -y
+
+sudo tee /var/www/html/index.html >/dev/null <<EOF
+<!DOCTYPE html>
+<html>
+<head>
+<title>Harness Demo</title>
+</head>
+<body>
+<h1>Harness Deployment Successful</h1>
+<p>Welcome to AWS EC2</p>
+</body>
+</html>
+EOF
+
+sudo systemctl restart nginx
+curl http://localhost

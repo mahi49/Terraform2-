@@ -1,0 +1,88 @@
+pipeline:
+  name: nginx-deployment
+  identifier: nginxdeployment
+  projectIdentifier: DevOps
+  orgIdentifier: default
+
+  stages:
+
+    - stage:
+        name: Deploy
+        identifier: Deploy
+
+        type: Deployment
+
+        spec:
+
+          service:
+            serviceRef: nginxservice
+
+          environment:
+            environmentRef: dev
+
+          execution:
+
+            steps:
+
+              - step:
+                  type: ShellScript
+                  name: Install Nginx
+                  identifier: InstallNginx
+
+                  spec:
+
+                    shell: Bash
+
+                    onDelegate: false
+
+                    source:
+                      type: Inline
+
+                      spec:
+                        script: |
+
+                          sudo apt update
+
+                          sudo apt install nginx -y
+
+                          sudo systemctl enable nginx
+
+                          sudo systemctl start nginx
+
+              - step:
+
+                  type: Copy
+
+                  name: Copy HTML
+
+                  identifier: CopyHTML
+
+                  spec:
+
+                    sourcePath: index.html
+
+                    destinationPath: /var/www/html/
+
+              - step:
+
+                  type: ShellScript
+
+                  name: Restart Nginx
+
+                  identifier: Restart
+
+                  spec:
+
+                    shell: Bash
+
+                    onDelegate: false
+
+                    source:
+                      type: Inline
+
+                      spec:
+                        script: |
+
+                          sudo systemctl restart nginx
+
+                          curl localhost

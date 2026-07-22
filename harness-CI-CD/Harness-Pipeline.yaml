@@ -1,7 +1,9 @@
 pipeline:
-  name: nginx-deployment
-  identifier: nginxdeployment
-  projectIdentifier: DevOps
+  name: pipeline-nginx
+  identifier: demo-pipeline-nginx
+  projectIdentifier: demopipelinenginx
+
+
   orgIdentifier: default
 
   stages:

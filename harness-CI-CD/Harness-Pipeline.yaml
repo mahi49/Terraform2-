@@ -10,9 +10,9 @@ pipeline:
 
     - stage:
         name: Deploy
-        identifier: Deploy
+        identifier: demopipelinenginx
 
-        type: Deployment
+        type: Secure Shell (SSH)
 
         spec:
 

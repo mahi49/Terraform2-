@@ -1,6 +1,6 @@
 pipeline:
   name: demo-pipeline-nginx
-  identifier:demopipelinenginx
+  identifier: demopipelinenginx
   projectIdentifier: demopipelinenginx
 
 
